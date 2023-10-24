@@ -45,7 +45,7 @@ export default function RegisterScreen({ navigation }) {
         routes: [{ name: "Dashboard" }],
       });
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       alert("Sign up failed " + error.message);
     } finally {
       setLoading(false);

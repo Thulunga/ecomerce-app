@@ -9,9 +9,9 @@ export default function StartScreen({ navigation }) {
   return (
     <Background>
       <Logo />
-      <Header>Login Template</Header>
+      <Header>Aronai & Dokhona</Header>
       <Paragraph>
-        The easiest way to start with your amazing application.
+        Market place for Aronai and Dokhona.
       </Paragraph>
       <Button
         mode="contained"

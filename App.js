@@ -29,7 +29,6 @@ export default function App() {
   
   useEffect(() => {
     onAuthStateChanged(dokhonaAuth, (user) => {
-      console.log(user);
       user ? setLoggedIn(true): setLoggedIn(false);
     });
   }, []);

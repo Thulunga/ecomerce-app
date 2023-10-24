@@ -41,7 +41,7 @@ export default function LoginScreen({ navigation }) {
         routes: [{ name: "Dashboard" }],
       });
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       alert("Sign in failed " + error.message); // update the error message later
     } finally {
       setLoading(false);
