@@ -6,15 +6,14 @@ import { theme } from '../core/theme'
 export default function Button({ mode, style, ...props }) {
   return (
     <PaperButton
-      style={[
+      children={undefined} style={[
         styles.button,
         mode === 'outlined' && { backgroundColor: theme.colors.surface },
         style,
       ]}
       labelStyle={styles.text}
       mode={mode}
-      {...props}
-    />
+      {...props}    />
   )
 }
 

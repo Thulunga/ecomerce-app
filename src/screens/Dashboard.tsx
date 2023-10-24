@@ -16,13 +16,10 @@ export default function Dashboard({ navigation }) {
       </Paragraph>
       <Button
         mode="outlined"
-        onPress={() =>
-          navigation.reset({
-            index: 0,
-            routes: [{ name: 'StartScreen' }],
-          })
-        }
-      >
+        onPress={() => navigation.reset({
+          index: 0,
+          routes: [{ name: 'StartScreen' }],
+        })} style={undefined}      >
         Logout
       </Button>
     </Background>
