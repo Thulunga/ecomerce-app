@@ -16,51 +16,36 @@ import { theme } from "../core/theme";
 import { emailValidator } from "../helpers/emailValidator";
 import { passwordValidator } from "../helpers/passwordValidator";
 import { dokhonaAuth } from "../../FirebaseCofig";
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "@firebase/auth";
+import { signInWithEmailAndPassword } from "@firebase/auth";
 
 export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState({ value: "", error: "" });
   const [password, setPassword] = useState({ value: "", error: "" });
   const [loading, setLoading] = useState(false);
+  const auth = dokhonaAuth;
 
-  const signIn =async () => {
+  const signIn = async () => {
     setLoading(true);
-    try {
-      const response = await signInWithEmailAndPassword(dokhonaAuth, email.value, password.value);
-      console.log(response);
-    } catch (error) {
-      console.log(error)
-      alert
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  const signUp =async () => {
-    setLoading(true);
-    try {
-      const response = await createUserWithEmailAndPassword(dokhonaAuth, email.value, password.value);
-      console.log(response);
-    } catch (error) {
-      console.log(error)
-      alert
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  const onLoginPressed = () => {
     const emailError = emailValidator(email.value);
     const passwordError = passwordValidator(password.value);
     if (emailError || passwordError) {
       setEmail({ ...email, error: emailError });
       setPassword({ ...password, error: passwordError });
+      setLoading(false);
       return;
     }
-    navigation.reset({
-      index: 0,
-      routes: [{ name: "Dashboard" }],
-    });
+    try {
+      await signInWithEmailAndPassword(auth, email.value, password.value);
+      navigation.reset({
+        index: 0,
+        routes: [{ name: "Dashboard" }],
+      });
+    } catch (error) {
+      console.log(error);
+      alert("Sign in failed " + error.message); // update the error message later
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -102,14 +87,17 @@ export default function LoginScreen({ navigation }) {
         <ActivityIndicator size="large" color="#0000ff"></ActivityIndicator>
       ) : (
         <>
-          <Button mode="contained" onPress={onLoginPressed} style={undefined}>
-            Login
+          <Button
+            mode="contained"
+            onPress={() => {
+              signIn();
+            }}
+            style={undefined}
+          >
+            Login with firebase
           </Button>
         </>
       )}
-      <Button mode="contained" onPress={onLoginPressed} style={undefined}>
-        Login
-      </Button>
       <View style={styles.row}>
         <Text>Don’t have an account? </Text>
         <TouchableOpacity onPress={() => navigation.replace("RegisterScreen")}>
