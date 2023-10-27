@@ -36,10 +36,10 @@ export default function LoginScreen({ navigation }) {
     }
     try {
       await signInWithEmailAndPassword(auth, email.value, password.value);
-      navigation.reset({
-        index: 0,
-        routes: [{ name: "Dashboard" }],
-      });
+      // navigation.reset({
+      //   index: 0,
+      //   routes: [{ name: "Dashboard" }],
+      // });
     } catch (error) {
       // console.log(error);
       alert("Sign in failed " + error.message); // update the error message later
