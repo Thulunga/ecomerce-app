@@ -1,8 +1,4 @@
 import React, { useRef, useState } from "react";
-import Logo from "../components/Logo";
-import Header from "../components/Header";
-import Paragraph from "../components/Paragraph";
-import Button from "../components/Button";
 import { dokhonaAuth } from "../../FirebaseCofig";
 import {
   View,

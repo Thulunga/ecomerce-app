@@ -40,10 +40,10 @@ export default function RegisterScreen({ navigation }) {
     }
     try {
       await createUserWithEmailAndPassword(auth, email.value, password.value);
-      navigation.reset({
-        index: 0,
-        routes: [{ name: "Dashboard" }],
-      });
+      // navigation.reset({
+      //   index: 0,
+      //   routes: [{ name: "Dashboard" }],
+      // });
     } catch (error) {
       // console.log(error);
       alert("Sign up failed " + error.message);
